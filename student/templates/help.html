@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>افزایش اعتبار کیف پول</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url("https://images.unsplash.com/photo-1498837167922-ddd27525d352");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 500px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h2 {
+            color: #d35400;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        a.back {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: #e67e22;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        a.back:hover {
+            background: #d35400;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💳 سرویس در حال توسعه است</h2>
+    <p>
+        این قابلیت هنوز آماده نشده است.<br>
+        شما می‌توانید برای افزایش موجودی کیف پول با مدیریت یا شماره تماس زیر هماهنگ کنید:<br>
+        <strong>021-xxxxxxx</strong>
+    </p>
+    <p>
+        به زودی می‌توانید به صورت آنلاین کیف پول خود را شارژ کنید.
+    </p>
+    <a href="{% url 'student_dashboard' %}" class="back">⬅️ بازگشت به داشبورد</a>
+</div>
+
+</body>
+</html>
