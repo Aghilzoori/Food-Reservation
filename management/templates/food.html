@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نمایش غذا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url("https://images.unsplash.com/photo-1498837167922-ddd27525d352");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .glass-card {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 14px 10px;
+            border: 1px solid #eee;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+
+        th {
+            background-color: #fdf1e7;
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fefaf7;
+        }
+
+        .empty {
+            text-align: center;
+            color: #888;
+            padding: 25px;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: scale(1.03);
+        }
+
+        .add-link {
+            display: inline-block;
+            padding: 13px 30px;
+            background: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .add-link:hover {
+            background: #d35400;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+<h2>🍽️ برنامه غذایی</h2>
+
+<div class="glass-card">
+    <form method="post" action="{% url 'delete_foods' %}" style="text-align:center; margin-bottom: 25px;">
+        {% csrf_token %}
+        <button type="submit" class="btn-danger">
+            🗑️ حذف کامل برنامه غذایی
+        </button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>روز</th>
+                <th>صبحانه</th>
+                <th>ناهار</th>
+                <th>شام</th>
+                <th>قیمت کل</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in food %}
+            <tr>
+                <td><strong>{{ item.get_day_display }}</strong></td>
+                <td>{{ item.breakfast|default:"—" }}</td>
+                <td>{{ item.lunch|default:"—" }}</td>
+                <td>{{ item.dinner|default:"—" }}</td>
+                <td>{{ item.total_price|default:"—" }} تومان</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="empty">
+                    برنامه غذایی ثبت نشده است
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a class="add-link" href="{% url 'add_food' %}">
+    ➕ افزودن برنامه غذایی
+</a>
+
+</body>
+</html>
