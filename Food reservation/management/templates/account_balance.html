@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>موجودی حساب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url("https://images.unsplash.com/photo-1498837167922-ddd27525d352");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 450px;
+            padding: 35px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h2 {
+            color: #d35400;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+            text-align: right;
+        }
+
+        p strong {
+            color: #d35400;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0 10px 0;
+            font-size: 14px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            text-align: right;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #e67e22;
+            box-shadow: 0 0 8px rgba(230, 126, 34, 0.4);
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 10px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        .plus {
+            background: #4CAF50;
+        }
+
+        .plus:hover {
+            background: #388E3C;
+        }
+
+        .minus {
+            background: #f44336;
+        }
+
+        .minus:hover {
+            background: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>💰 حساب هنرجو</h2>
+
+    <p><strong>نام:</strong> {{ student.full_name }}</p>
+    <p><strong>موجودی:</strong> {{ student.account_balance }} تومان</p>
+
+    <form method="post" action="{% url 'inventory_increase' student.id %}">
+        {% csrf_token %}
+        <input type="number" name="inventory" placeholder="مقدار افزایش" required>
+        <div class="btn-group">
+            <button type="submit" class="plus">➕ افزایش</button>
+        </div>
+    </form>
+
+    <form method="post" action="{% url 'inventory_reduction' student.id %}" style="margin-top: 10px;">
+        {% csrf_token %}
+        <input type="number" name="inventory" placeholder="مقدار کاهش" required>
+        <div class="btn-group">
+            <button type="submit" class="minus">➖ کاهش</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
