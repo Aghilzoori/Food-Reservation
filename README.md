@@ -34,3 +34,11 @@ python manage.py migrate
 # اجرای پروژه
 برای اجرای پروژه در محیط توسعه (لوکال هاست)، دستور زیر را اجرا کنید:
 python manage.py runserver# Food-Reservation
+
+
+# داشبورد دانش آموز
+![](<Screenshot From 2026-06-08 13-06-57.png>)
+# داشبورد مدیریت
+![](<Screenshot From 2026-06-08 13-07-49.png>)
+# پنجره ورود دانش آموز
+![](<Screenshot From 2026-06-08 13-06-02.png>)
