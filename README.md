@@ -25,12 +25,21 @@
 
 ## 📦 نصب و راه‌اندازی
 pip install django==6.0.2
+
+
 pip install django-extensions==4.1
 
 ## تنظیمات پایگاه داده
 python manage.py makemigrations
-python manage.py migrate
 
+
+python manage.py migrate
+## تنظیمات cron jon
+chmod +x /home/aghil/Desktop/Food-Reservation/run_remove_a_day.sh
+crontab -e 
+
+
+59 23 * * * /home/aghil/Desktop/Food-Reservation/run_remove_a_day.sh
 # اجرای پروژه
 برای اجرای پروژه در محیط توسعه (لوکال هاست)، دستور زیر را اجرا کنید:
 python manage.py runserver# Food-Reservation
