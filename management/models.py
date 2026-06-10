@@ -17,6 +17,8 @@ class Student(models.Model):
         default=0,
         verbose_name="موجودی حساب"
     )
+    
+    profile = models.ImageField(null=True, blank=True, default='default.jpg')
 
     def __str__(self):
         return self.full_name

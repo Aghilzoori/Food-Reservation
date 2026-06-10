@@ -87,7 +87,7 @@
 <div class="form-box">
     <h2>👤 افزودن هنرجو</h2>
 
-    <form method="post">
+    <form action='' method='POST', enctype='multipart/form-data'>
         {% csrf_token %}
 
         <label for="full_name">نام و نام خانوادگی</label>

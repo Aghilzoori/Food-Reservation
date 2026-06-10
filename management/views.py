@@ -14,7 +14,7 @@ def show_list_students(request):
 
 def enter_student(request):
     if request.method == "POST":
-        form = StudentForms(request.POST)
+        form = StudentForms(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('student')

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -132,6 +133,7 @@
     <ul>
         {% for student in students %}
             <li>
+                <img src="{{ student.profile.url }}">
                 <strong>نام:</strong> {{ student.full_name }} <br>
                 <strong>کد ملی:</strong> {{ student.national_code }} <br>
                 <strong>موجودی:</strong> {{ student.account_balance }} تومان
