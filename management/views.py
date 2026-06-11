@@ -20,7 +20,8 @@ def enter_student(request):
             return redirect('student')
     else:
         form = StudentForms()
-    return render(request, "add_student.html")
+        context = {'form':form}
+    return render(request, "add_student.html", context)
 
 def delete_student(request, id):
     if request.method == "POST":

@@ -89,15 +89,8 @@
 
     <form action='' method='POST', enctype='multipart/form-data'>
         {% csrf_token %}
-
-        <label for="full_name">نام و نام خانوادگی</label>
-        <input type="text" id="full_name" name="full_name" required>
-
-        <label for="national_code">کد ملی</label>
-        <input type="text" id="national_code" name="national_code" required>
-
-        <label for="account_balance">موجودی حساب</label>
-        <input type="number" id="account_balance" name="account_balance" required>
+        
+        {{form}}
 
         <button type="submit">✅ ثبت اطلاعات</button>
     </form>

@@ -8,6 +8,7 @@ class StudentForms(forms.ModelForm):
                 "full_name", 
                 "national_code", 
                 "account_balance",
+                "profile",
                 ]
 class DailyFoodForms(forms.ModelForm):
     class Meta:

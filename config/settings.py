@@ -33,11 +33,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'management',
     'student',  
-    'django_extensions',  
+    'django_extensions',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,7 +116,7 @@ STATICFILES_DIRS = [
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-
+'whitenoise.middleware.WhiteNoiseMiddleware' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
