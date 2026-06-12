@@ -212,6 +212,24 @@
         <p>داشبورد دانش‌آموز</p>
     </div>
 
+    <div class="cards">
+        <div class="card">
+            <h3>نام دانش‌آموز</h3>
+            <p>{{ student.full_name|default:"—" }}</p>
+        </div>
+        <div class="card">
+            <h3>کد ملی</h3>
+            <p>{{ student.national_code|default:"—" }}</p>
+        </div>
+        <div class="card">
+            <h3>موجودی حساب</h3>
+            <p>{{ student.account_balance|default:"0" }} تومان</p>
+        </div>
+        <div>
+            <img src="{{ student.profile.url}}">
+        </div>
+    </div>
+
     <div class="glass-card">
         <h3>📋 رزروهای من</h3>
         <table>
@@ -282,24 +300,6 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
-
-    <div class="cards">
-        <div class="card">
-            <h3>نام دانش‌آموز</h3>
-            <p>{{ student.full_name|default:"—" }}</p>
-        </div>
-        <div class="card">
-            <h3>کد ملی</h3>
-            <p>{{ student.national_code|default:"—" }}</p>
-        </div>
-        <div class="card">
-            <h3>موجودی حساب</h3>
-            <p>{{ student.account_balance|default:"0" }} تومان</p>
-        </div>
-        <div>
-            <img src="{{ student.profile.url}}">
-        </div>
     </div>
 
     <div class="actions">

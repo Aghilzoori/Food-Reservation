@@ -45,9 +45,10 @@ crontab -e
 python manage.py runserver# Food-Reservation
 
 
-# داشبورد دانش آموز
-![](<Screenshot From 2026-06-08 13-06-57.png>)
-# داشبورد مدیریت
-![](<Screenshot From 2026-06-08 13-07-49.png>)
-# پنجره ورود دانش آموز
-![](<Screenshot From 2026-06-08 13-06-02.png>)
+# گالری تصاویر
+![alt text](<Screenshot From 2026-06-12 16-09-46.png>)
+![alt text](<Screenshot From 2026-06-12 16-10-16.png>)
+![alt text](<Screenshot From 2026-06-12 16-17-45.png>)
+![alt text](<Screenshot From 2026-06-12 16-17-57.png>)
+![alt text](<Screenshot From 2026-06-12 16-19-19.png>)
+![alt text](<Screenshot From 2026-06-12 16-19-42.png>)
