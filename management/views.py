@@ -13,16 +13,18 @@ def show_list_students(request):
 
 
 def enter_student(request):
+    context = {}
     if request.method == "POST":
         form = StudentForms(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('student')
+        else:
+            context["form"] = form
     else:
         form = StudentForms()
-        context = {'form':form}
+        context["form"] = form
     return render(request, "add_student.html", context)
-
 def delete_student(request, id):
     if request.method == "POST":
         student = get_object_or_404(Student, id=id)

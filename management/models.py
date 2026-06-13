@@ -14,7 +14,6 @@ class Student(models.Model):
     )
 
     account_balance = models.IntegerField(
-        default=0,
         verbose_name="موجودی حساب"
     )
     

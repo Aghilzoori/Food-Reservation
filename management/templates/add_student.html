@@ -89,7 +89,7 @@
 
     <form action='' method='POST', enctype='multipart/form-data'>
         {% csrf_token %}
-        
+        {{ form.non_field_errors }}
         {{form}}
 
         <button type="submit">✅ ثبت اطلاعات</button>

@@ -69,7 +69,7 @@ def food_reservation(request, reservation_id):
     today_index = get_today_iran_index()
     food_day_index = get_iran_day_index(food.day)
     
-    if today_index > food_day_index:
+    if today_index == food_day_index:
         return render(request, "reservation_error.html", {
             "error": "❌ تاریخ این غذا گذشته است"
         })
@@ -106,8 +106,8 @@ def delete_reservation(request, reservation_id):
     food_day_index = get_iran_day_index(reservation.food.day)
     today_index = get_today_iran_index()
     
-    if food_day_index <= today_index:
-        return render(request, "reservation_error.html", {"error": "⏰ مهلت لغو این رزرو تمام شده است (غذا مربوط به گذشته یا امروز است)"})
+    if food_day_index == today_index:
+        return render(request, "reservation_error.html", {"error": "⏰ مهلت لغو این رزرو تمام شده است (غذا مربوط به امروز است)"})
     else:
         price = reservation.food.total_price if reservation.food.total_price is not None else 0
         
