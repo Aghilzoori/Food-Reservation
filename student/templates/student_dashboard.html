@@ -203,6 +203,15 @@
                 width: 100%;
             }
         }
+
+        .avatar{
+            width:120px;
+            height:120px;
+            object-fit:cover;
+            border-radius:50%;
+            border:2px solid #fff;
+            box-shadow:0 2px 6px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body>
@@ -226,7 +235,7 @@
             <p>{{ student.account_balance|default:"0" }} تومان</p>
         </div>
         <div>
-            <img src="{{ student.profile.url}}">
+            <img src="{{ student.profile.url }}" class="avatar">
         </div>
     </div>
 

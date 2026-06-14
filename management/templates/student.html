@@ -123,6 +123,15 @@
             background: #d35400;
             transform: scale(1.03);
         }
+        .avatar{
+            width:120px;
+            height:120px;
+            object-fit:cover;
+            border-radius:50%;
+            border:2px solid #fff;
+            box-shadow:0 2px 6px rgba(0,0,0,0.15);
+        }
+
     </style>
 </head>
 <body>
@@ -133,7 +142,7 @@
     <ul>
         {% for student in students %}
             <li>
-                <img src="{{ student.profile.url }}">
+                <img src="{{ student.profile.url }}" class="avatar">
                 <strong>نام:</strong> {{ student.full_name }} <br>
                 <strong>کد ملی:</strong> {{ student.national_code }} <br>
                 <strong>موجودی:</strong> {{ student.account_balance }} تومان

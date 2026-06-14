@@ -20,7 +20,7 @@ class Student(models.Model):
     profile = models.ImageField(
         null=True, 
         blank=True, 
-        default='default.jpg', 
+        # default='default.jpg', 
         verbose_name="پروفایل"
         )
 
