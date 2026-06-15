@@ -48,7 +48,8 @@ python manage.py runserver# Food-Reservation
 # گالری تصاویر
 ![alt text](<Screenshot From 2026-06-12 16-09-46.png>)
 ![alt text](<Screenshot From 2026-06-12 16-10-16.png>)
-![alt text](<Screenshot From 2026-06-12 16-17-45.png>)
+![alt text](<Screenshot From 2026-06-15 21-01-18.png>)
 ![alt text](<Screenshot From 2026-06-12 16-17-57.png>)
 ![alt text](<Screenshot From 2026-06-12 16-19-19.png>)
 ![alt text](<Screenshot From 2026-06-12 16-19-42.png>)
+![alt text](<Screenshot From 2026-06-15 21-01-42.png>)
