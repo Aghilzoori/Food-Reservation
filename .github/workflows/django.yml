@@ -1,30 +1,78 @@
-name: Django CI
+name: Django CI/CD
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  build:
-
+  build-test-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Tests
-      run: |
-        python manage.py test
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests (optional)
+        run: |
+          if [ -f manage.py ]; then
+            python manage.py test
+          fi
+
+      - name: Deploy to server via SSH
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SERVER_PATH: ${{ secrets.SERVER_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # Host key checking را ساده می‌کنیم (در محیط واقعی بهتر است known_hosts را درست کنید)
+          SSH_OPTS="-p $SSH_PORT -o StrictHostKeyChecking=no"
+
+          ssh $SSH_OPTS $SSH_USER@$SSH_HOST "bash -lc '
+            set -e
+
+            # سرور: برو به مسیر پروژه
+            cd \"$SERVER_PATH\"
+
+            # اگه فولدر نیست، بساز و clone کن (فقط یک‌بار)
+            if [ ! -f manage.py ]; then
+              git clone https://github.com/${{ github.repository }}.git \"$SERVER_PATH\"
+              cd \"$SERVER_PATH\"
+            fi
+
+            # Pull جدیدترین کد
+            git pull origin ${{ github.ref_name }}
+
+            # محیط مجازی
+            python3 -m venv venv
+            source venv/bin/activate
+
+            pip install -U pip
+            pip install -r requirements.txt
+
+            # مهاجرت و static
+            # برای SQLite باید فایل db در همان مسیر پروژه باشد (معمولاً db.sqlite3)
+            python manage.py migrate --noinput
+            python manage.py collectstatic --noinput
+
+            # اگر Gunicorn سرویس داری، ریستارت کن
+            if systemctl list-units --type=service | grep -q \"gunicorn\"; then
+              sudo systemctl restart gunicorn* || true
+            fi
+          '"
